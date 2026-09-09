@@ -1,0 +1,13 @@
+{
+  "name": "Root and Ruin",
+  "url": "https://rootandruin.net",
+  "tagline": "A farming game about a Slavonian village that is emptying out, and the forest that is not.",
+  "pitch": [
+    "You inherit your grandmother's house in a village on the plain, three people from empty. By day you work the fields, fix the house and bring the village back one household at a time. Past the fields is the old oak forest, and in it the creatures from the stories she used to tell you. She was not joking.",
+    "Real crops, real festivals, real stories. It ends after two years, when the village fair comes round and you find out who came home."
+  ],
+  "status": "Built alone, in the evenings, in Godot. No release date. Right now: drawing the village street and the river.",
+  "author": "Robert Stanić",
+  "author_url": "https://robertstanic.com",
+  "github": "https://github.com/Rostanic20/FarmGame"
+}
