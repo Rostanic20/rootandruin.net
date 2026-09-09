@@ -72,6 +72,10 @@ def markdown(src):
             out.append('<figure><img src="%s" alt="%s" loading="lazy">%s</figure>'
                        % (src_path, html.escape(alt, quote=True), caption))
             continue
+        if stripped.startswith("~ "):
+            flush()
+            out.append('<p class="sig">%s</p>' % inline(stripped[2:]))
+            continue
         if stripped.startswith("- "):
             if kind != "ul":
                 flush()
@@ -120,7 +124,7 @@ def long_date(d):
     return "%d %s %d" % (d.day, d.strftime("%B"), d.year)
 
 
-def shell(title, description, canonical, body, depth=0, kind="website"):
+def shell(title, description, canonical, body, depth=0, kind="website", extra_head=""):
     base = "../" * depth
     return """<!DOCTYPE html>
 <html lang="en">
@@ -129,7 +133,8 @@ def shell(title, description, canonical, body, depth=0, kind="website"):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%(title)s</title>
 <meta name="description" content="%(description)s">
-<link rel="canonical" href="%(canonical)s">
+<meta name="author" content="%(author)s">
+<link rel="canonical" href="%(canonical)s">%(extra_head)s
 <meta property="og:type" content="%(kind)s">
 <meta property="og:url" content="%(canonical)s">
 <meta property="og:title" content="%(title)s">
@@ -170,6 +175,7 @@ def shell(title, description, canonical, body, depth=0, kind="website"):
         "author": SITE["author"],
         "author_url": SITE["author_url"],
         "github": SITE["github"],
+        "extra_head": extra_head,
     }
 
 
@@ -191,6 +197,7 @@ def home(posts):
 </section>
 <section class="devlog" id="devlog">
   <h2>Devlog</h2>
+  <p class="follow">One post per milestone. Follow with the <a href="feed.xml">RSS feed</a>, or check back.</p>
   <ul class="posts">
 %(items)s
   </ul>
@@ -203,22 +210,50 @@ def home(posts):
     return shell(SITE["name"], SITE["tagline"], SITE["url"] + "/", body)
 
 
-def post_page(p):
+def post_page(p, newer, older):
+    links = ""
+    if newer or older:
+        older_link = '<a href="../%s/">Older: %s</a>' % (older["slug"], html.escape(older["title"])) if older else "<span></span>"
+        newer_link = '<a href="../%s/">Newer: %s</a>' % (newer["slug"], html.escape(newer["title"])) if newer else "<span></span>"
+        links = '<nav class="neighbours">%s%s</nav>' % (older_link, newer_link)
     body = """<article class="post">
   <header>
     <h1>%(title)s</h1>
     <p class="meta"><time datetime="%(iso)s">%(date)s</time></p>
   </header>
 %(body)s
+%(links)s
   <p class="back"><a href="../../#devlog">All posts</a></p>
 </article>""" % {
         "title": html.escape(p["title"]),
         "iso": p["date"].isoformat(),
         "date": long_date(p["date"]),
         "body": p["body"],
+        "links": links,
     }
+    ld = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": p["title"],
+        "description": p["summary"],
+        "datePublished": p["date"].isoformat(),
+        "author": {"@type": "Person", "name": SITE["author"], "url": SITE["author_url"]},
+        "publisher": {"@type": "Person", "name": SITE["author"], "url": SITE["author_url"]},
+        "mainEntityOfPage": p["url"],
+        "image": SITE["url"] + "/assets/img/og-image.png",
+        "isPartOf": {"@type": "Blog", "name": SITE["name"] + " devlog", "url": SITE["url"] + "/"},
+    }, indent=2)
+    extra = '\n<script type="application/ld+json">\n%s\n</script>' % ld
     return shell("%s · %s" % (p["title"], SITE["name"]), p["summary"], p["url"], body,
-                 depth=2, kind="article")
+                 depth=2, kind="article", extra_head=extra)
+
+
+def not_found():
+    body = """<section class="lost">
+  <h1>Nothing grows here</h1>
+  <p>That page does not exist, or it moved. The <a href="/">front page</a> has everything, and the <a href="/#devlog">devlog</a> is where the news lands.</p>
+</section>"""
+    return shell("Page not found · " + SITE["name"], "That page does not exist.", SITE["url"] + "/404", body)
 
 
 def feed(posts):
@@ -248,9 +283,10 @@ def feed(posts):
 
 
 def sitemap(posts):
-    urls = [SITE["url"] + "/"] + [p["url"] for p in posts]
+    newest = max(p["date"] for p in posts).isoformat() if posts else datetime.date.today().isoformat()
+    urls = [(SITE["url"] + "/", newest)] + [(p["url"], p["date"].isoformat()) for p in posts]
     return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + \
-        "\n".join("  <url><loc>%s</loc></url>" % u for u in urls) + "\n</urlset>\n"
+        "\n".join("  <url><loc>%s</loc><lastmod>%s</lastmod></url>" % (u, d) for u, d in urls) + "\n</urlset>\n"
 
 
 def write(rel, text):
@@ -266,8 +302,11 @@ def main():
                     for n in os.listdir(POSTS_DIR) if n.endswith(".md")),
                    key=lambda p: p["date"], reverse=True)
     write("index.html", home(posts))
-    for p in posts:
-        write("devlog/%s/index.html" % p["slug"], post_page(p))
+    for i, p in enumerate(posts):
+        newer = posts[i - 1] if i > 0 else None
+        older = posts[i + 1] if i + 1 < len(posts) else None
+        write("devlog/%s/index.html" % p["slug"], post_page(p, newer, older))
+    write("404.html", not_found())
     write("feed.xml", feed(posts))
     write("sitemap.xml", sitemap(posts))
 

@@ -32,4 +32,4 @@ I am building it alone, in the evenings, in Godot. There is a farm you can walk 
 
 The village street and the river are on the drawing board now. When they exist, that is when the first real screenshots go up. No release date. If you want to follow along, the feed link at the bottom is the way; every post lands there.
 
-Robert
+~ Robert

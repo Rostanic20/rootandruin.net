@@ -31,15 +31,23 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+@font-face {
+  font-family: "Alegreya Fallback";
+  src: local("Georgia");
+  size-adjust: 94%;
+  ascent-override: 100%;
+  descent-override: 28%;
+}
+
 :root {
   --vapno: #f3ebda;
   --vapno-deep: #e9dfc8;
   --sjena: #d9cbaf;
   --crnica: #2a1f17;
   --zemlja: #5c4a3a;
-  --crijep: #b8563a;
-  --crijep-deep: #944130;
-  --zlatovez: #b98d12;
+  --crijep: #a84a30;
+  --crijep-deep: #86392a;
+  --zlatovez: #8a6a0e;
   --livada: #4f8a34;
   --measure: 38rem;
   --scene: 960px;
@@ -50,7 +58,7 @@
 html {
   background: var(--vapno);
   color: var(--crnica);
-  font-family: "Alegreya", Georgia, "Times New Roman", serif;
+  font-family: "Alegreya", "Alegreya Fallback", Georgia, serif;
   font-size: 112.5%;
   line-height: 1.55;
   -webkit-text-size-adjust: 100%;
@@ -151,8 +159,8 @@ main { flex: 1; width: 100%; }
 }
 .pitch { padding-top: 1.4rem; }
 .pitch p { margin: 0 0 1rem; font-size: 1.1rem; }
-.status {
-  margin-top: 1.6rem !important;
+.pitch p.status {
+  margin-top: 1.6rem;
   padding-left: 1rem;
   border-left: 3px solid var(--zlatovez);
   color: var(--zemlja);
@@ -165,6 +173,7 @@ h2 {
   font-weight: 700;
   margin: 0 0 1rem;
 }
+.follow { margin: -0.4rem 0 1.2rem; color: var(--zemlja); }
 .posts {
   list-style: none;
   padding: 0;
@@ -239,7 +248,18 @@ h2 {
   font-size: 0.95rem;
   font-style: italic;
 }
-.back { margin-top: 2.5rem; }
+.post p.sig { margin-top: 2rem; font-style: italic; }
+.neighbours {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sjena);
+}
+.neighbours a { max-width: 48%; }
+.back { margin-top: 1.5rem; }
+.lost { padding: 3rem 0; max-width: var(--measure); margin: 0 auto; }
 
 .foot {
   width: 100%;
