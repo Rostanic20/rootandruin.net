@@ -1,0 +1,8 @@
+tools/
+devlog/*.md
+site.json
+README.md
+wrangler.jsonc
+.git
+.gitignore
+.gitattributes
