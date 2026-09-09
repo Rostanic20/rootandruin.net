@@ -4,21 +4,21 @@ date: 2026-09-09
 summary: Where the idea comes from, what the game is, and where it stands.
 ---
 
-I live in Slavonski Brod, in Slavonia, the flat part of Croatia between the Sava and the Drava. Oak forests, black earth, and villages built as one long street with the houses gable-on to the road. Drive twenty minutes out of town in any direction and you will find one. Most of them had a school, a shop, a football pitch that got used, and a church bell that rang for storms as much as for mass.
+I live in Slavonia, the flat part of Croatia between the Sava and the Drava. Oak forests, black earth, and villages built as one long street with the houses gable-on to the road. Most of them had a school, a shop, a football pitch and a church bell that rang for storms as much as for mass. A lot of them are emptying out now. Not gone, but quieter every year, with more houses shut than lived in.
 
-Most of the people my age left them. Germany, Ireland, Zagreb. The schools closed, then the shops. The bells still hang there. Nobody rings them.
+Nobody has made a farming game about that, and nobody has used the folklore from around here as a bestiary. So I am.
 
-That is the game. The village in it is invented, but the emptying is not. You play someone who inherits their grandmother's crumbling house in a village three people from empty. You farm, you fix the house, and you bring the place back one household at a time. The revival is literally visible on the walk to the shop: every lot starts abandoned and overgrown, and every person who arrives wakes one up.
+The village in the game is invented. You play someone who inherits their grandmother's crumbling house in a village three people from empty. You farm, you fix the house, and you bring the place back one household at a time. The revival is literally visible on the walk to the shop: every lot starts abandoned and overgrown, and every person who arrives wakes one up.
 
 ## The forest
 
 Past the fields there is an old oak forest, and this is where the game stops being only a farming game.
 
-In the stories grandmothers tell around here, mine included, the things in the deep forest keep their distance from bells, fires, garlic on the doorpost and people on the street. As a village empties, that boundary thins. Boars in the fields first, then wolves at the edge, then the cries at night. In the game, reviving the village pushes the forest back, and the forest pushing in is the pressure on you. They are one system seen from two sides.
+I grew up on the stories grandmothers tell in villages on this side of the Balkans, the ones from Bosnia included. In those stories the things in the deep forest keep their distance from bells, fires, garlic on the doorpost and people on the street. As a village empties, that boundary thins. Boars in the fields first, then jackals howling at the edge, then a cry at night that is not a jackal. In the game, reviving the village pushes the forest back, and the forest pushing in is the pressure on you. They are one system seen from two sides.
 
 The creatures are the ones from the stories, not slimes with a Balkan coat of paint. The drekavac you hear before you ever see. The psoglav and the vukodlak in the deep forest. The vile, who are not your enemies unless you make them so. And in the heart of it the bauk, which cannot be killed, only driven back with light and noise.
 
-In the game, your grandmother left a notebook. Recipes on one page, a creature on the next, in her handwriting, with the counter written in the margin. It is the cookbook, the bestiary and the story, all in her voice.
+The grandmother in the game left a notebook. Recipes on one page, a creature on the next, in her handwriting, with the counter written in the margin. It is the cookbook, the bestiary and the story, all in her voice.
 
 ## Real things
 
