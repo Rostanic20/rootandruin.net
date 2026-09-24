@@ -105,14 +105,13 @@ a:focus-visible {
   justify-content: space-between;
   gap: 1rem;
 }
-.home {
-  color: var(--crnica);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.35rem;
-  letter-spacing: 0.01em;
+.home { display: block; }
+.home img {
+  display: block;
+  width: 400px;
+  height: 80px;
+  image-rendering: pixelated;
 }
-.home:hover { color: var(--crijep-deep); }
 .top nav { display: flex; gap: 1.4rem; }
 .top nav a { color: var(--zemlja); text-decoration: none; }
 .top nav a:hover { color: var(--crijep-deep); text-decoration: underline; }
@@ -276,6 +275,14 @@ h2 {
   html { font-size: 106%; }
   .posts li { grid-template-columns: 1fr; gap: 0.1rem; }
   .top { flex-wrap: wrap; }
+}
+
+@media (max-width: 27.75rem) {
+  .home img { width: 300px; height: 60px; }
+}
+
+@media (max-width: 21.5rem) {
+  .home img { width: 200px; height: 40px; }
 }
 
 @media (prefers-reduced-motion: no-preference) {

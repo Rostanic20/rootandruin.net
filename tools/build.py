@@ -124,8 +124,7 @@ def long_date(d):
     return "%d %s %d" % (d.day, d.strftime("%B"), d.year)
 
 
-def shell(title, description, canonical, body, depth=0, kind="website", extra_head=""):
-    base = "../" * depth
+def shell(title, description, canonical, body, base="", kind="website", extra_head=""):
     return """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,7 +150,7 @@ def shell(title, description, canonical, body, depth=0, kind="website", extra_he
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top">
-  <a class="home" href="%(base)s">%(name)s</a>
+  <a class="home" href="%(base)s"><img src="%(base)sassets/img/logo.png" alt="%(name)s" width="400" height="80"></a>
   <nav><a href="%(base)s#devlog">Devlog</a><a href="%(base)sfeed.xml">Feed</a></nav>
 </header>
 <main id="main">
@@ -245,7 +244,7 @@ def post_page(p, newer, older):
     }, indent=2)
     extra = '\n<script type="application/ld+json">\n%s\n</script>' % ld
     return shell("%s · %s" % (p["title"], SITE["name"]), p["summary"], p["url"], body,
-                 depth=2, kind="article", extra_head=extra)
+                 base="../../", kind="article", extra_head=extra)
 
 
 def not_found():
@@ -253,7 +252,8 @@ def not_found():
   <h1>Nothing grows here</h1>
   <p>That page does not exist, or it moved. The <a href="/">front page</a> has everything, and the <a href="/#devlog">devlog</a> is where the news lands.</p>
 </section>"""
-    return shell("Page not found · " + SITE["name"], "That page does not exist.", SITE["url"] + "/404", body)
+    return shell("Page not found · " + SITE["name"], "That page does not exist.", SITE["url"] + "/404", body,
+                 base="/")
 
 
 def feed(posts):

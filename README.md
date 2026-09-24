@@ -37,7 +37,7 @@ python3 -m http.server 8000     # then http://localhost:8000
 
 ## Assets
 
-`assets/img/hero.png`, `crops.png`, the favicons and `og-image.png` are cut
+`assets/img/hero.png`, `crops.png`, `logo.png`, the favicons and `og-image.png` are cut
 from the game's own generated art by a one-off script in the game repo's
 tools; regenerate them there when the art changes. Fonts are Alegreya under
 the OFL, latin and latin-ext subsets only.
